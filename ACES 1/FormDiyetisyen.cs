@@ -16,23 +16,12 @@ namespace ACES_1
         public FormDiyetisyen()
         {
             InitializeComponent();
-            Data data1 = new Data();
-            MySqlDataAdapter adtr = new MySqlDataAdapter();
-            adtr = data1.getAdapter("select k.name,k.surname,k.hastalik, d.ogunTipID, k.TC from kullanici k, diyet_takvim d where tip LIKE '%Müşteri%'AND k.hastalik = d.hastalik ");
-            DataTable dtbl1 = new DataTable();
-            adtr.Fill(dtbl1);
-            dataGridView1.DataSource = dtbl1;
-
+            tblMusteriGuncelle();
         }
 
         private void FormDiyetisyen_Load(object sender, EventArgs e)
         {
-            // TODO: Bu kod satırı 'diyetveri_050621DataSet.ogun_tip' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
-            this.ogun_tipTableAdapter.Fill(this.diyetveri_050621DataSet.ogun_tip);
-
-            
-
-
+            tblMusteriGuncelle();
         }
 
 
@@ -47,15 +36,31 @@ namespace ACES_1
             lblTC.Text = selectedRow.Cells[4].Value.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSil_Click(object sender, EventArgs e)
         {
             Data dt1 = new Data();
+            MySqlCommand command = new MySqlCommand();
+            
+            command = dt1.getCommand("DELETE FROM kullanici where TC = @TC");
+            command.Parameters.AddWithValue("@TC", lblTC.Text);
+            command.ExecuteNonQuery();
+            tblMusteriGuncelle();
+        }
+        protected void tblMusteriGuncelle()
+        {
+            Data data1 = new Data();
             MySqlDataAdapter adtr = new MySqlDataAdapter();
-            adtr = dt1.getAdapter("UPDATE kullanici SET ogunTipID = '" +lblOgunTip.Text +"' where TC = " + lblTC.Text );
-            //dt1.tabloGuncelle("select k.name,k.surname,k.hastalik, d.ogunTipID, k.TC from kullanici k, diyet_takvim d where tip LIKE '%Müşteri%'AND k.hastalik = d.hastalik ");
-            DataTable dtbl666 = new DataTable();
-            adtr = dt1.getAdapter("select k.name,k.surname,k.hastalik, d.ogunTipID, k.TC from kullanici k, diyet_takvim d where tip LIKE '%Müşteri%'AND k.hastalik = d.hastalik ");
-            adtr.Fill(dtbl666);
+            adtr = data1.getAdapter("select k.name,k.surname,k.hastalik, d.ogunTipID, k.TC from kullanici k, diyet_takvim d where tip LIKE '%Müşteri%'AND k.hastalik = d.hastalik ");
+            DataTable dtbl1 = new DataTable();
+            adtr.Fill(dtbl1);
+            dataGridView1.DataSource = dtbl1;
+        }
+
+        private void btnEkle_Click(object sender, EventArgs e)
+        {
+            MüşteriEkle musteriEkle = new MüşteriEkle();
+            musteriEkle.ShowDialog();
+            
         }
     }
 }

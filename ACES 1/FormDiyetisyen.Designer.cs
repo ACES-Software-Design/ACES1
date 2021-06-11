@@ -49,6 +49,8 @@ namespace ACES_1
             this.lbl73 = new System.Windows.Forms.Label();
             this.lblTC = new System.Windows.Forms.Label();
             this.lblOgunTip = new System.Windows.Forms.Label();
+            this.btnSil = new System.Windows.Forms.Button();
+            this.btnEkle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diyetveri_050621DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oguntipBindingSource)).BeginInit();
@@ -63,6 +65,7 @@ namespace ACES_1
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(604, 275);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -210,11 +213,33 @@ namespace ACES_1
             this.lblOgunTip.Size = new System.Drawing.Size(0, 17);
             this.lblOgunTip.TabIndex = 16;
             // 
+            // btnSil
+            // 
+            this.btnSil.Location = new System.Drawing.Point(630, 281);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(125, 59);
+            this.btnSil.TabIndex = 17;
+            this.btnSil.Text = "Sil";
+            this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
+            // btnEkle
+            // 
+            this.btnEkle.Location = new System.Drawing.Point(785, 281);
+            this.btnEkle.Name = "btnEkle";
+            this.btnEkle.Size = new System.Drawing.Size(125, 59);
+            this.btnEkle.TabIndex = 18;
+            this.btnEkle.Text = "Ekle";
+            this.btnEkle.UseVisualStyleBackColor = true;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
+            // 
             // FormDiyetisyen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 378);
+            this.Controls.Add(this.btnEkle);
+            this.Controls.Add(this.btnSil);
             this.Controls.Add(this.lblOgunTip);
             this.Controls.Add(this.lblTC);
             this.Controls.Add(this.lbl73);
@@ -231,7 +256,7 @@ namespace ACES_1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormDiyetisyen";
-            this.Text = "Form2";
+            this.Text = "Diyetisyen Arayüz";
             this.Load += new System.EventHandler(this.FormDiyetisyen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diyetveri_050621DataSet)).EndInit();
@@ -263,5 +288,7 @@ namespace ACES_1
         private System.Windows.Forms.Label lbl73;
         private System.Windows.Forms.Label lblTC;
         private System.Windows.Forms.Label lblOgunTip;
+        private System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.Button btnEkle;
     }
 }
